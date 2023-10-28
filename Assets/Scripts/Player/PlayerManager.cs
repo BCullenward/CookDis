@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,46 @@ namespace CookDis
 {
     public class PlayerManager : MonoBehaviour
     {
+        public static PlayerManager Instance { get; private set; }
+
+        public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+        public class OnSelectedCounterChangedEventArgs : EventArgs
+        {
+            public ClearCounterManager selectedCounter;
+        }
+
         [SerializeField] private float moveSpeed = 7f;
         [SerializeField] private PlayerInputManager playerInputManager;
         [SerializeField] private LayerMask countersLayerMask;
 
         private bool isWalking;
         private Vector3 lastInteractDir;
+        private ClearCounterManager selectedCounter;
+
+        private void Awake()
+        {
+            if (Instance != null)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
+
+        private void Start()
+        {
+            playerInputManager.OnInteractAction += PlayerInputManager_OnInteractAction;
+        }
+
+        private void PlayerInputManager_OnInteractAction(object sender, EventArgs e)
+        {
+            if (selectedCounter != null)
+            {
+                selectedCounter.Interact();
+            }
+        }
 
         private void Update()
         {
@@ -40,8 +75,19 @@ namespace CookDis
                 if (raycastHit.transform.TryGetComponent(out ClearCounterManager clearCounter))
                 {
                     // has clear counter
-                    clearCounter.Interact();
+                    if (clearCounter != selectedCounter)
+                    {
+                        SetSelectedCounter(clearCounter);
+                    }
                 }
+                else
+                {
+                    SetSelectedCounter(null);
+                }
+            }
+            else
+            {
+                SetSelectedCounter(null);
             }
         }
 
@@ -100,6 +146,13 @@ namespace CookDis
             transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
         }
 
-
+        private void SetSelectedCounter(ClearCounterManager selectedCounter)
+        {
+            this.selectedCounter = selectedCounter;
+            OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
+            {
+                selectedCounter = selectedCounter
+            });
+        }
     }
 }

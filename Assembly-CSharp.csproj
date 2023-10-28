@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Items\CounterManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
+    <Compile Include="Assets\Scripts\Items\SelectedCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
   </ItemGroup>
   <ItemGroup>
