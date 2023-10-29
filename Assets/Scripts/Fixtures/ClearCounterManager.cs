@@ -6,9 +6,13 @@ namespace CookDis
 {
     public class ClearCounterManager : CounterManager
     {
-        public void Interact()
+        [SerializeField] private KitchenItemsSOManager kitchenItemsSO;
+
+
+        public override void Interact(PlayerManager player)
         {
-            Debug.Log("Interact!");
+
         }
+
     }
 }

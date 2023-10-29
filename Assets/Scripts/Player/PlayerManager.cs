@@ -5,23 +5,25 @@ using UnityEngine;
 
 namespace CookDis
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : MonoBehaviour, IKitchenItemParentManager
     {
         public static PlayerManager Instance { get; private set; }
 
         public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
         public class OnSelectedCounterChangedEventArgs : EventArgs
         {
-            public ClearCounterManager selectedCounter;
+            public CounterManager selectedCounter;
         }
 
         [SerializeField] private float moveSpeed = 7f;
-        [SerializeField] private PlayerInputManager playerInputManager;
+        [SerializeField] private PlayerInputManager playerInput;
         [SerializeField] private LayerMask countersLayerMask;
+        [SerializeField] private Transform itemHoldPoint;
 
         private bool isWalking;
         private Vector3 lastInteractDir;
-        private ClearCounterManager selectedCounter;
+        private CounterManager selectedCounter;
+        private KitchenItemManager kitchenItem;
 
         private void Awake()
         {
@@ -37,14 +39,14 @@ namespace CookDis
 
         private void Start()
         {
-            playerInputManager.OnInteractAction += PlayerInputManager_OnInteractAction;
+            playerInput.OnInteractAction += PlayerInput_OnInteractAction;
         }
 
-        private void PlayerInputManager_OnInteractAction(object sender, EventArgs e)
+        private void PlayerInput_OnInteractAction(object sender, EventArgs e)
         {
             if (selectedCounter != null)
             {
-                selectedCounter.Interact();
+                selectedCounter.Interact(this);
             }
         }
 
@@ -61,7 +63,7 @@ namespace CookDis
 
         private void HandleInteractions()
         {
-            Vector2 inputVector = playerInputManager.GetMovementVectorNormalized();
+            Vector2 inputVector = playerInput.GetMovementVectorNormalized();
             Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
             if (moveDir != Vector3.zero)
             {
@@ -72,12 +74,12 @@ namespace CookDis
 
             if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
             {
-                if (raycastHit.transform.TryGetComponent(out ClearCounterManager clearCounter))
+                if (raycastHit.transform.TryGetComponent(out CounterManager counter))
                 {
                     // has clear counter
-                    if (clearCounter != selectedCounter)
+                    if (counter != selectedCounter)
                     {
-                        SetSelectedCounter(clearCounter);
+                        SetSelectedCounter(counter);
                     }
                 }
                 else
@@ -98,7 +100,7 @@ namespace CookDis
 
         private void HandleMovement()
         {
-            Vector2 inputVector = playerInputManager.GetMovementVectorNormalized();
+            Vector2 inputVector = playerInput.GetMovementVectorNormalized();
             Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
             float playerRadius = 0.7f;
@@ -146,13 +148,42 @@ namespace CookDis
             transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
         }
 
-        private void SetSelectedCounter(ClearCounterManager selectedCounter)
+        private void SetSelectedCounter(CounterManager selectedCounter)
         {
             this.selectedCounter = selectedCounter;
             OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
             {
                 selectedCounter = selectedCounter
             });
+        }
+
+        public Transform GetKitchenItemFollowTransform()
+        {
+            return itemHoldPoint;
+        }
+
+        public void SetKitchenItem(KitchenItemManager kitchenItem)
+        {
+            // TO_DO play grab animation
+            // TO_DO play soundFX
+            this.kitchenItem = kitchenItem;
+        }
+
+        public KitchenItemManager GetKitchenItem()
+        {
+            return kitchenItem;
+        }
+
+        public void ClearKitchenItem()
+        {
+            // TO_DO play drop animation
+            // TO_DO  play SFX
+            kitchenItem = null;
+        }
+
+        public bool HasKitchenItem()
+        {
+            return kitchenItem != null;
         }
     }
 }

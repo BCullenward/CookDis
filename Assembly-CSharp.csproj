@@ -58,13 +58,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Fixtures\ContainerCounterVisualManager.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\ClearCounterManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputManager.cs" />
-    <Compile Include="Assets\Scripts\Items\ClearCounterManager.cs" />
-    <Compile Include="Assets\Scripts\Items\CounterManager.cs" />
+    <Compile Include="Assets\Scripts\Items\KitchenItemManager.cs" />
+    <Compile Include="Assets\Scripts\Items\IKitchenItemParentManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
-    <Compile Include="Assets\Scripts\Items\SelectedCounterVisualManager.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\SelectedCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\ContainerCounterManager.cs" />
+    <Compile Include="Assets\Scripts\Items\KitchenItemsSOManager.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\CounterManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_Assets\KitchenChaos_COMPLETE_PROJECT.txt" />

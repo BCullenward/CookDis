@@ -6,8 +6,8 @@ namespace CookDis
 {
     public class SelectedCounterVisualManager : MonoBehaviour
     {
-        [SerializeField] private ClearCounterManager clearCounterManager;
-        [SerializeField] private GameObject visualGameObject;
+        [SerializeField] private CounterManager counter;
+        [SerializeField] private GameObject[] visualGameObjectArray;
 
         private void Start()
         {
@@ -16,7 +16,7 @@ namespace CookDis
 
         private void PlayerManager_OnSelectedCounterChanged(object sender, PlayerManager.OnSelectedCounterChangedEventArgs e)
         {
-            if (e.selectedCounter == clearCounterManager)
+            if (e.selectedCounter == counter)
             {
                 Show();
             }
@@ -28,12 +28,18 @@ namespace CookDis
 
         private void Show()
         {
-            visualGameObject.SetActive(true);
+            foreach (GameObject visualGameObject in visualGameObjectArray)
+            {
+                visualGameObject.SetActive(true);
+            }
         }
 
         private void Hide()
         {
-            visualGameObject.SetActive(false);
+            foreach (GameObject visualGameObject in visualGameObjectArray)
+            {
+                visualGameObject.SetActive(false);
+            }
         }
 
     }
