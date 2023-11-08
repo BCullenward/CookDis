@@ -51,6 +51,20 @@ namespace CookDis
         private void Start()
         {
             playerInput.OnInteractAction += PlayerInput_OnInteractAction;
+            playerInput.OnInteractAlternateAction += PlayerInput_OnInteractAlternateAction;
+        }
+
+        private void PlayerInput_OnInteractAlternateAction(object sender, EventArgs e)
+        {
+            if (selectedCounter != null)
+            {
+                selectedCounter.InteractAlternate(this);
+            }
+
+            if (selectedAnimal != null)
+            {
+                selectedAnimal.InteractAlternate(this);
+            }
         }
 
         private void PlayerInput_OnInteractAction(object sender, EventArgs e)
@@ -130,7 +144,7 @@ namespace CookDis
             {
                 // attempt only x movement
                 Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
+                canMove = moveDir.x !=0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
 
                 if (canMove)
                 {
@@ -142,7 +156,7 @@ namespace CookDis
                     // cannot move only on the x
                     // attempt only z movement
                     Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                    canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
+                    canMove = moveDir.z !=0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
 
                     if (canMove)
                     {

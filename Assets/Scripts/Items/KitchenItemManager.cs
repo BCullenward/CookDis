@@ -41,5 +41,22 @@ namespace CookDis
             return kitchenItemParent;
         }
 
+        public void DestroySelf()
+        {
+            kitchenItemParent.ClearKitchenItem();
+            Destroy(gameObject);
+        }
+
+
+        public static KitchenItemManager SpawnKitchenItem(KitchenItemsSOManager kitchenItemsSO, IKitchenItemParentManager kitchenItemParent)
+        {
+
+            Transform kitchenItemTransform = Instantiate(kitchenItemsSO.prefab);
+            KitchenItemManager kitchenItem = kitchenItemTransform.GetComponent<KitchenItemManager>();
+            kitchenItem.SetKitchenItemParent(kitchenItemParent);
+
+            return kitchenItem;
+        }
+
     }
 }

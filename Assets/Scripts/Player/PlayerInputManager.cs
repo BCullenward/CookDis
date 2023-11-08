@@ -9,6 +9,7 @@ namespace CookDis
     public class PlayerInputManager : MonoBehaviour
     {
         public event EventHandler OnInteractAction;
+        public event EventHandler OnInteractAlternateAction;
 
         private PlayerInputActions playerInputActions;
 
@@ -32,7 +33,13 @@ namespace CookDis
                 playerInputActions.Player.Enable();
 
                 playerInputActions.Player.Interact.performed += Interact_performed;
+                playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
             }
+        }
+
+        private void InteractAlternate_performed(InputAction.CallbackContext obj)
+        {
+            OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
         }
 
         private void Interact_performed(InputAction.CallbackContext obj)

@@ -15,6 +15,10 @@ namespace CookDis
         {
         }
 
+        public virtual void InteractAlternate(PlayerManager player)
+        {
+        }
+
         public Transform GetKitchenItemFollowTransform()
         {
             return counterTopPoint;

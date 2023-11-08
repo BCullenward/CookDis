@@ -15,8 +15,7 @@ namespace CookDis
             // if player not carrying anything spawn it
             if (!player.HasKitchenItem())
             {
-                Transform kitchenItemTransform = Instantiate(kitchenItemsSO.prefab);
-                kitchenItemTransform.GetComponent<KitchenItemManager>().SetKitchenItemParent(player);
+                KitchenItemManager.SpawnKitchenItem(kitchenItemsSO, player);
 
                 OnPlayerGrabbedItem?.Invoke(this, EventArgs.Empty);
             }

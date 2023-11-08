@@ -13,6 +13,10 @@ namespace CookDis
         {
         }
 
+        public virtual void InteractAlternate(PlayerManager player)
+        {
+        }
+
         public void ClearAnimalItem()
         {
             animalItem = null;
