@@ -11,7 +11,32 @@ namespace CookDis
 
         public override void Interact(PlayerManager player)
         {
-
+            if (!HasKitchenItem())
+            {
+                // no item
+                if (player.HasKitchenItem())
+                {
+                    // player has item
+                    player.GetKitchenItem().SetKitchenItemParent(this);
+                }
+                else
+                {
+                    // player not carrying item
+                }
+            }
+            else
+            {
+                // has item
+                if (player.HasKitchenItem())
+                {
+                    // player carrying item
+                }
+                else
+                {
+                    // player not carrying item
+                    GetKitchenItem().SetKitchenItemParent(player);
+                }
+            }
         }
 
     }

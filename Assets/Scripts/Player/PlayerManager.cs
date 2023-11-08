@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CookDis
 {
-    public class PlayerManager : MonoBehaviour, IKitchenItemParentManager
+    public class PlayerManager : MonoBehaviour, IKitchenItemParentManager, IAnimalItemParentManager
     {
         public static PlayerManager Instance { get; private set; }
 
@@ -14,6 +14,14 @@ namespace CookDis
         {
             public CounterManager selectedCounter;
         }
+
+        public event EventHandler<OnSelectedAnimalChangedEventArgs> OnSelectedAnimalChanged;
+        public class OnSelectedAnimalChangedEventArgs :EventArgs
+        {
+            public AnimalManager selectedAnimal;
+        }
+
+
 
         [SerializeField] private float moveSpeed = 7f;
         [SerializeField] private PlayerInputManager playerInput;
@@ -24,6 +32,9 @@ namespace CookDis
         private Vector3 lastInteractDir;
         private CounterManager selectedCounter;
         private KitchenItemManager kitchenItem;
+
+        private AnimalManager selectedAnimal;
+        private AnimalItemManager animalItem;
 
         private void Awake()
         {
@@ -48,6 +59,12 @@ namespace CookDis
             {
                 selectedCounter.Interact(this);
             }
+
+            if (selectedAnimal != null)
+            {
+                selectedAnimal.Interact(this);
+            }
+
         }
 
         private void Update()
@@ -71,6 +88,8 @@ namespace CookDis
             }
 
             float interactDistance = 2f;
+            SetSelectedCounter(null);
+            SetSelectedAnimal(null);
 
             if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
             {
@@ -82,14 +101,13 @@ namespace CookDis
                         SetSelectedCounter(counter);
                     }
                 }
-                else
+                else if (raycastHit.transform.TryGetComponent(out AnimalManager animal))
                 {
-                    SetSelectedCounter(null);
+                    if (animal != selectedAnimal)
+                    {
+                        SetSelectedAnimal(animal);
+                    }
                 }
-            }
-            else
-            {
-                SetSelectedCounter(null);
             }
         }
 
@@ -157,6 +175,16 @@ namespace CookDis
             });
         }
 
+
+        private void SetSelectedAnimal(AnimalManager selectedAnimal)
+        {
+            this.selectedAnimal = selectedAnimal;
+            OnSelectedAnimalChanged?.Invoke(this, new OnSelectedAnimalChangedEventArgs
+            {
+                selectedAnimal = selectedAnimal
+            });
+        }
+
         public Transform GetKitchenItemFollowTransform()
         {
             return itemHoldPoint;
@@ -184,6 +212,16 @@ namespace CookDis
         public bool HasKitchenItem()
         {
             return kitchenItem != null;
+        }
+
+        public AnimalItemManager GetAnimalItem()
+        {
+            return animalItem;
+        }
+
+        public bool HasAnimalItem()
+        {
+            return animalItem != null;
         }
     }
 }
