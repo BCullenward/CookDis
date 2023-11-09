@@ -6,7 +6,7 @@ namespace CookDis
 {
     public class CuttingCounterManager : CounterManager
     {
-        [SerializeField] private KitchenItemsSOManager cutKitchenItemSO;
+        [SerializeField] private CuttingRecipeSOManager[] cuttingRecipeSOArray;
 
         public override void Interact(PlayerManager player)
         {
@@ -16,7 +16,11 @@ namespace CookDis
                 if (player.HasKitchenItem())
                 {
                     // player has item
-                    player.GetKitchenItem().SetKitchenItemParent(this);
+                    if (HasRecipeWithInput(player.GetKitchenItem().GetKitchenItemsSO()))
+                    {
+                        // player carrying item that can be cut
+                        player.GetKitchenItem().SetKitchenItemParent(this);
+                    }
                 }
                 else
                 {
@@ -40,16 +44,41 @@ namespace CookDis
 
         public override void InteractAlternate(PlayerManager player)
         {
-            if (HasKitchenItem())
+            if (HasKitchenItem()  && HasRecipeWithInput(GetKitchenItem().GetKitchenItemsSO()))
             {
                 if (!player.HasKitchenItem())
                 {
+                    KitchenItemsSOManager outputKitchenObjectSO = GetOutputForInput(GetKitchenItem().GetKitchenItemsSO());
                     GetKitchenItem().DestroySelf();
 
-                    KitchenItemManager.SpawnKitchenItem(cutKitchenItemSO, this);
+                    KitchenItemManager.SpawnKitchenItem(outputKitchenObjectSO, this);
                 }
-
             }
+        }
+
+        private bool HasRecipeWithInput(KitchenItemsSOManager inputKitchenItemSO)
+        {
+            foreach (CuttingRecipeSOManager cuttingRecipeSO in cuttingRecipeSOArray)
+            {
+                if (cuttingRecipeSO.input == inputKitchenItemSO)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private KitchenItemsSOManager GetOutputForInput(KitchenItemsSOManager inputKitchenItemSO)
+        {
+            foreach (CuttingRecipeSOManager cuttingRecipeSO in cuttingRecipeSOArray)
+            {
+                if (cuttingRecipeSO.input == inputKitchenItemSO)
+                {
+                    return cuttingRecipeSO.output;
+                }
+            }
+
+            return null;
         }
 
     }

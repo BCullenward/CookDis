@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Fixtures\ContainerCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\ClearCounterManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\CuttingCounterManager.cs" />
+    <Compile Include="Assets\Scripts\Items\CuttingRecipeSOManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputManager.cs" />
     <Compile Include="Assets\Scripts\Animals\ChickenManager.cs" />
     <Compile Include="Assets\Scripts\Items\KitchenItemManager.cs" />
