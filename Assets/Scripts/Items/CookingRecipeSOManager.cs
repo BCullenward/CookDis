@@ -5,10 +5,10 @@ using UnityEngine;
 namespace CookDis
 {
     [CreateAssetMenu]
-    public class CuttingRecipeSOManager : ScriptableObject
+    public class CookingRecipeSOManager : ScriptableObject
     {
         public KitchenItemsSOManager input;
         public KitchenItemsSOManager output;
-        public int cuttingProgressMax;
+        public int cookingProgressMax;
     }
 }
