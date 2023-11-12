@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CookDis
 {
-    public class PlayerManager : MonoBehaviour, IKitchenItemParentManager, IAnimalItemParentManager
+    public class PlayerManager : MonoBehaviour, IKitchenItemParentManager//, IAnimalItemParentManager
     {
         public static PlayerManager Instance { get; private set; }
 
@@ -21,11 +21,10 @@ namespace CookDis
             public AnimalManager selectedAnimal;
         }
 
-
-
         [SerializeField] private float moveSpeed = 7f;
         [SerializeField] private PlayerInputManager playerInput;
         [SerializeField] private LayerMask countersLayerMask;
+        [SerializeField] private LayerMask animalsLayerMask;
         [SerializeField] private Transform itemHoldPoint;
 
         private bool isWalking;
@@ -34,7 +33,7 @@ namespace CookDis
         private KitchenItemManager kitchenItem;
 
         private AnimalManager selectedAnimal;
-        private AnimalItemManager animalItem;
+        //private AnimalItemManager animalItem;
 
         private void Awake()
         {
@@ -101,12 +100,17 @@ namespace CookDis
                 lastInteractDir = moveDir;
             }
 
-            float interactDistance = 2f;
-            SetSelectedCounter(null);
-            SetSelectedAnimal(null);
+            CheckCounterSelect();
+            CheckAnimalSelect();
+        }
 
-            if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        private void CheckCounterSelect()
+        {
+            SetSelectedCounter(null);
+            float interactCounterDistance = 2f;
+            if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactCounterDistance, countersLayerMask))
             {
+                // set Counter
                 if (raycastHit.transform.TryGetComponent(out CounterManager counter))
                 {
                     // has clear counter
@@ -115,15 +119,46 @@ namespace CookDis
                         SetSelectedCounter(counter);
                     }
                 }
-                else if (raycastHit.transform.TryGetComponent(out AnimalManager animal))
+            }
+        }
+
+        private void CheckAnimalSelect()
+        {
+            SetSelectedAnimal(null);
+            float interactAnimalDistance = 2f;
+
+            //Debug.Log("Transform.position: " + transform.position + "---LastInteractDir: " +  lastInteractDir);
+
+            Ray ray = new Ray(transform.position, lastInteractDir);
+            RaycastHit hitData;
+            //Physics.Raycast(ray, out hitData, interactAnimalDistance, animalsLayerMask);
+
+            //if (hitData.transform.TryGetComponent(out BisonManager bison))
+            //{
+            //    Debug.Log("found");
+            //}
+            //else
+            //{
+            //    Debug.Log("not found");
+            //}
+
+            if (Physics.Raycast(ray, out hitData, interactAnimalDistance, countersLayerMask))
+            {
+                Debug.Log("wha");
+                // set Animal
+                if (hitData.transform.TryGetComponent(out AnimalManager animal))
                 {
+                    Debug.Log("Animal->" + animal + " - Selected Animal->" + selectedAnimal);
                     if (animal != selectedAnimal)
                     {
+                        Debug.Log("Set start");
                         SetSelectedAnimal(animal);
+                        Debug.Log("Set end");
                     }
                 }
             }
         }
+
 
         public bool IsWalking()
         {
@@ -228,14 +263,14 @@ namespace CookDis
             return kitchenItem != null;
         }
 
-        public AnimalItemManager GetAnimalItem()
-        {
-            return animalItem;
-        }
+        //public AnimalItemManager GetAnimalItem()
+        //{
+        // //   return animalItem;
+        //}
 
-        public bool HasAnimalItem()
-        {
-            return animalItem != null;
-        }
+        //public bool HasAnimalItem()
+        //{
+        //    return animalItem != null;
+        //}
     }
 }

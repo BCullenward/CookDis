@@ -16,8 +16,10 @@ namespace CookDis
 
         private void PlayerManager_OnSelectedAnimalChanged(object sender, PlayerManager.OnSelectedAnimalChangedEventArgs e)
         {
+            //Debug.Log(e.selectedAnimal + "<- selected animal -  Animal ->" + animal);
             if (e.selectedAnimal == animal)
             {
+                Debug.Log("Here2");
                 Show();
             }
             else

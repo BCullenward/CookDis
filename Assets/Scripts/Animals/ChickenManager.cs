@@ -6,7 +6,7 @@ namespace CookDis
 {
     public class ChickenManager : AnimalManager
     {
-        [SerializeField] private AnimalItemsSOManager animalItemsSO;
+        [SerializeField] private HarvestProgressSOManager harvest;
 
         public override void Interact(PlayerManager player)
         {

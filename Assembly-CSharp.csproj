@@ -64,25 +64,32 @@
     <Compile Include="Assets\Scripts\Fixtures\CuttingCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\ClearCounterManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\CuttingCounterManager.cs" />
-    <Compile Include="Assets\Scripts\Items\CuttingRecipeSOManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputManager.cs" />
     <Compile Include="Assets\Scripts\Animals\ChickenManager.cs" />
     <Compile Include="Assets\Scripts\Items\KitchenItemManager.cs" />
-    <Compile Include="Assets\Scripts\Items\CookingRecipeSOManager.cs" />
+    <Compile Include="Assets\Scripts\Items\LootSOManager.cs" />
     <Compile Include="Assets\Scripts\Items\IKitchenItemParentManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
+    <Compile Include="Assets\Scripts\UI\FloatingHarvestProgressBar.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressBarUIManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\SelectedCounterVisualManager.cs" />
+    <Compile Include="Assets\Scripts\UI\ProgressBarLookAtCameraManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
-    <Compile Include="Assets\Scripts\Items\AnimalItemsSOManager.cs" />
+    <Compile Include="Assets\Scripts\Items\HarvestManager.cs" />
+    <Compile Include="Assets\Scripts\SOs\AnimalItemsSOManager.cs" />
     <Compile Include="Assets\Scripts\Items\AnimalItemManager.cs" />
+    <Compile Include="Assets\Scripts\Items\LootBagManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\ContainerCounterManager.cs" />
     <Compile Include="Assets\Scripts\Animals\BisonManager.cs" />
+    <Compile Include="Assets\Scripts\SOs\KitchenItemsSOManager.cs" />
     <Compile Include="Assets\Scripts\Animals\SelectedAnimalVisualManager.cs" />
-    <Compile Include="Assets\Scripts\Items\KitchenItemsSOManager.cs" />
+    <Compile Include="Assets\Scripts\SOs\CuttingRecipeSOManager.cs" />
+    <Compile Include="Assets\Scripts\SOs\HarvestProgressSOManager.cs" />
     <Compile Include="Assets\Scripts\Animals\CowManager.cs" />
+    <Compile Include="Assets\Scripts\SOs\CookingRecipeSOManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\CounterManager.cs" />
+    <Compile Include="Assets\Scripts\UI\AnimalProgressBarUIManager.cs" />
     <Compile Include="Assets\Scripts\Items\IAnimalItemParentManager.cs" />
   </ItemGroup>
   <ItemGroup>

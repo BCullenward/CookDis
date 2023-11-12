@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8329938883640099695}
   - component: {fileID: 6327625890683571370}
   - component: {fileID: 8754522816642979356}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8afa5de2554fa4c9cc51b97a0cfc51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalItemsSO: {fileID: 11400000, guid: 938895db7d47308488e1ac60f826bd01, type: 2}
+  harvest: {fileID: 11400000, guid: feaf8b212c3b55148992b249d998cb9b, type: 2}
 --- !u!65 &8754522816642979356
 BoxCollider:
   m_ObjectHideFlags: 0

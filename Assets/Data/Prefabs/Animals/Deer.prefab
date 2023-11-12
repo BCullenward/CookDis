@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5667171420882574552}
   - component: {fileID: -7774442418434730118}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Deer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93687e43c067305468a9968721bac22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  harvest: {fileID: 11400000, guid: 7bf829f60830165429ba4823758c26ba, type: 2}
 --- !u!1 &6989646577354623894
 GameObject:
   m_ObjectHideFlags: 0

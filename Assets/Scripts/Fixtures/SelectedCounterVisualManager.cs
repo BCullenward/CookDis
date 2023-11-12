@@ -18,6 +18,7 @@ namespace CookDis
         {
             if (e.selectedCounter == counter)
             {
+                //Debug.Log("Counter");
                 Show();
             }
             else

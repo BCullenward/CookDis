@@ -14,6 +14,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 34787b5fae4591a4f8f15623e67cdee1,
         type: 2}
+    - target: {fileID: 4180154975082403977, guid: ee09f9204e1c29b4ca12529d5779deb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577981662340649839, guid: ee09f9204e1c29b4ca12529d5779deb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363591694810859138, guid: ee09f9204e1c29b4ca12529d5779deb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275074793063770379, guid: ee09f9204e1c29b4ca12529d5779deb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7859360181626037113, guid: ee09f9204e1c29b4ca12529d5779deb5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 8668065393188685511, guid: ee09f9204e1c29b4ca12529d5779deb5,
         type: 3}
       propertyPath: m_Name
-      value: ContainerCounter_Cheese
+      value: ContainerCounter_CheeseBlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,14 +6,14 @@ namespace CookDis
 {
     public interface IAnimalItemParentManager
     {
-       // public Transform GetAnimalItemFollowTransform();
+       //// public Transform GetAnimalItemFollowTransform();
 
-        //public void SetAnimalItem(AnimalItemManager animalItem);
+       // //public void SetAnimalItem(AnimalItemManager animalItem);
 
-        public AnimalItemManager GetAnimalItem();
+       // public AnimalItemManager GetAnimalItem();
 
-        //public void ClearAnimalItem();
+       // //public void ClearAnimalItem();
 
-        public bool HasAnimalItem();
+       // public bool HasAnimalItem();
     }
 }

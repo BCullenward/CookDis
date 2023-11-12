@@ -486,4 +486,7 @@ MonoBehaviour:
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  animalsLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   itemHoldPoint: {fileID: 0}

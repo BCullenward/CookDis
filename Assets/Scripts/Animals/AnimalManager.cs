@@ -21,25 +21,19 @@ namespace CookDis
         {
             animalItem = null;
         }
+        public void SetAnimalItem(AnimalItemManager animalItem)
+        {
+            this.animalItem = animalItem;
+        }
 
         public AnimalItemManager GetAnimalItem()
         {
             return animalItem;
         }
 
-        //public Transform GetAnimalItemFollowTransform()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
-
         public bool HasAnimalItem()
         {
             return animalItem != null;
         }
-
-        //public void SetAnimalItem(AnimalItemManager animalItem)
-        //{
-        //    this.animalItem = animalItem;
-        //}
     }
 }
