@@ -5,14 +5,9 @@ using UnityEngine;
 
 namespace CookDis
 {
-    public class CuttingCounterManager : CounterManager
+    public class CuttingCounterManager : CounterManager, IHasProgressManager
     {
-        public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
-        public class OnProgressChangedEventArgs : EventArgs
-        {
-            public float progressNormalized;
-        }
-
+        public event EventHandler<IHasProgressManager.OnProgressChangedEventArgs> OnProgressChanged;
         public event EventHandler OnCut;
 
         [SerializeField] private CuttingRecipeSOManager[] cuttingRecipeSOArray;
@@ -23,41 +18,36 @@ namespace CookDis
         public override void Interact(PlayerManager player)
         {
             if (!HasKitchenItem())
-            {
-                // no item
-                if (player.HasKitchenItem())
-                {
-                    // player has item
-                    if (HasRecipeWithInput(player.GetKitchenItem().GetKitchenItemsSO()))
+            { // no item is on the counter
+
+                if (player.HasKitchenItem() && HasRecipeWithInput(player.GetKitchenItem().GetKitchenItemsSO()))
+                {   // player has item that can be cut
+
+                    player.GetKitchenItem().SetKitchenItemParent(this);
+                    cuttingProgress = 0;
+
+                    CuttingRecipeSOManager cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenItem().GetKitchenItemsSO());
+                    OnProgressChanged?.Invoke(this, new IHasProgressManager.OnProgressChangedEventArgs
                     {
-                        // player carrying item that can be cut
-                        player.GetKitchenItem().SetKitchenItemParent(this);
-                        cuttingProgress = 0;
-
-                        CuttingRecipeSOManager cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenItem().GetKitchenItemsSO());
-
-                        OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
-                        {
-                            progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
-                        });
-                    }
+                        progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
+                    });
                 }
                 else
-                {
-                    // player not carrying item
+                {   // player not carrying item that can be cut
+
                 }
             }
             else
-            {
-                // has item
-                if (player.HasKitchenItem())
-                {
-                    // player carrying item
-                }
-                else
-                {
-                    // player not carrying item
+            {   // counter has item
+
+                if (!player.HasKitchenItem())
+                {   // player not carrying item
+
                     GetKitchenItem().SetKitchenItemParent(player);
+                    OnProgressChanged?.Invoke(this, new IHasProgressManager.OnProgressChangedEventArgs
+                    {
+                        progressNormalized = 0f
+                    });
                 }
             }
         }
@@ -65,22 +55,25 @@ namespace CookDis
         public override void InteractAlternate(PlayerManager player)
         {
             if (HasKitchenItem()  && HasRecipeWithInput(GetKitchenItem().GetKitchenItemsSO()))
-            {
+            {   // item that can be cut is on the counter
+
                 if (!player.HasKitchenItem())
-                {
+                {   // player isn't carrying anything so cut the item
+
                     cuttingProgress++;
 
                     OnCut?.Invoke(this, EventArgs.Empty);
                     CuttingRecipeSOManager cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenItem().GetKitchenItemsSO());
 
-                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    OnProgressChanged?.Invoke(this, new IHasProgressManager.OnProgressChangedEventArgs
                     {
                         progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                     });
 
 
                     if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax)
-                    {
+                    {   // item has been cut to max level
+
                         KitchenItemsSOManager outputKitchenObjectSO = GetOutputForInput(GetKitchenItem().GetKitchenItemsSO());
                         GetKitchenItem().DestroySelf();
 

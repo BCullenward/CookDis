@@ -87,7 +87,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2873877239650033187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0fb66f41be28047a1fc97aea7b1be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cuttingCounter: {fileID: 0}
-  harvest: {fileID: 0}
+  hasProgressGameObject: {fileID: 0}
   barImage: {fileID: 8276553839934690164}
 --- !u!114 &8652595869806696095
 MonoBehaviour:

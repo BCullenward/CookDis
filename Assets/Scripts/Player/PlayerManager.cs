@@ -144,16 +144,16 @@ namespace CookDis
 
             if (Physics.Raycast(ray, out hitData, interactAnimalDistance, countersLayerMask))
             {
-                Debug.Log("wha");
+                //Debug.Log("wha");
                 // set Animal
                 if (hitData.transform.TryGetComponent(out AnimalManager animal))
                 {
-                    Debug.Log("Animal->" + animal + " - Selected Animal->" + selectedAnimal);
+                    //Debug.Log("Animal->" + animal + " - Selected Animal->" + selectedAnimal);
                     if (animal != selectedAnimal)
                     {
-                        Debug.Log("Set start");
+                        //Debug.Log("Set start");
                         SetSelectedAnimal(animal);
-                        Debug.Log("Set end");
+                        //Debug.Log("Set end");
                     }
                 }
             }

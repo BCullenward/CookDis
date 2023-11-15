@@ -8,34 +8,25 @@ namespace CookDis
 {
     public class ProgressBarUIManager : MonoBehaviour
     {
-        [SerializeField] private CuttingCounterManager cuttingCounter;
-        [SerializeField] private HarvestManager harvest;
+        [SerializeField] private GameObject hasProgressGameObject;
         [SerializeField] private Image barImage;
 
+        private IHasProgressManager hasProgress;
 
         private void Start()
         {
-            cuttingCounter.OnProgressChanged += CuttingCounter_OnProgressChanged;
-            //harvest.OnProgressChanged += Harvest_OnProgressChanged;
+            hasProgress = hasProgressGameObject.GetComponent<IHasProgressManager>();
+            if (hasProgress == null)
+            {
+                Debug.LogError("Game Object " + hasProgressGameObject + " does not have a component that implements IHasPgress");
+            }
+
+            hasProgress.OnProgressChanged += HasProgress_OnProgressChanged;
             barImage.fillAmount = 0f;
             Hide();
         }
 
-        //private void Harvest_OnProgressChanged(object sender, HarvestManager.OnProgressChangedEventArgs e)
-        //{
-        //    barImage.fillAmount = e.progressNormalized;
-
-        //    if (e.progressNormalized == 0f || e.progressNormalized == 1f)
-        //    {
-        //        Hide();
-        //    }
-        //    else
-        //    {
-        //        Show();
-        //    }
-        //}
-
-        private void CuttingCounter_OnProgressChanged(object sender, CuttingCounterManager.OnProgressChangedEventArgs e)
+        private void HasProgress_OnProgressChanged(object sender, IHasProgressManager.OnProgressChangedEventArgs e)
         {
             barImage.fillAmount = e.progressNormalized;
 
@@ -48,10 +39,6 @@ namespace CookDis
                 Show();
             }
         }
-
-
-
-
 
         private void Show()
         {
