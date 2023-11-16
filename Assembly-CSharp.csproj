@@ -70,6 +70,7 @@
     <Compile Include="Assets\TrashCounterManager.cs" />
     <Compile Include="Assets\Scripts\Items\LootSOManager.cs" />
     <Compile Include="Assets\Scripts\Items\IKitchenItemParentManager.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\PlateCounterManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\UI\FloatingHarvestProgressBar.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Fixtures\StoveCounterManager.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressBarLookAtCameraManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\PlateCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\StoveCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Items\HarvestManager.cs" />
     <Compile Include="Assets\Scripts\SOs\AnimalItemsSOManager.cs" />
