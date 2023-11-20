@@ -101,7 +101,7 @@ namespace CookDis
             }
 
             CheckCounterSelect();
-            CheckAnimalSelect();
+            //CheckAnimalSelect();
         }
 
         private void CheckCounterSelect()

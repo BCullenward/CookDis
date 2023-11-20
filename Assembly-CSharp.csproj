@@ -58,6 +58,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Items\PlateKitchenItemManager.cs" />
     <Compile Include="Assets\Scripts\Animals\DeerManager.cs" />
     <Compile Include="Assets\Scripts\Animals\AnimalManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\ContainerCounterVisualManager.cs" />
@@ -73,18 +74,22 @@
     <Compile Include="Assets\Scripts\Fixtures\PlateCounterManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
+    <Compile Include="Assets\Scripts\Items\PlateCompleteVisualManager.cs" />
     <Compile Include="Assets\Scripts\UI\FloatingHarvestProgressBar.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressBarUIManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\SelectedCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\StoveCounterManager.cs" />
-    <Compile Include="Assets\Scripts\UI\ProgressBarLookAtCameraManager.cs" />
+    <Compile Include="Assets\Scripts\UI\LookAtCameraManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Fixtures\PlateCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\StoveCounterVisualManager.cs" />
     <Compile Include="Assets\Scripts\Items\HarvestManager.cs" />
     <Compile Include="Assets\Scripts\SOs\AnimalItemsSOManager.cs" />
+    <Compile Include="Assets\Scripts\UI\IHasIconsManager.cs" />
+    <Compile Include="Assets\Scripts\UI\IconSingleUIManager.cs" />
     <Compile Include="Assets\Scripts\Items\AnimalItemManager.cs" />
     <Compile Include="Assets\Scripts\Items\LootBagManager.cs" />
+    <Compile Include="Assets\Scripts\UI\IconsUIManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\ContainerCounterManager.cs" />
     <Compile Include="Assets\Scripts\Animals\BisonManager.cs" />
     <Compile Include="Assets\Scripts\SOs\KitchenItemsSOManager.cs" />
@@ -768,6 +773,9 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>

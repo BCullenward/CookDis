@@ -47,6 +47,20 @@ namespace CookDis
             Destroy(gameObject);
         }
 
+        public bool TryToGetPlate(out PlateKitchenItemManager plateKitchenItem)
+        {
+            if (this is PlateKitchenItemManager)
+            {
+                plateKitchenItem = this as PlateKitchenItemManager;
+                return true;
+            }
+            else
+            {
+                plateKitchenItem = null;
+                return false;
+            }
+        }
+
 
         public static KitchenItemManager SpawnKitchenItem(KitchenItemsSOManager kitchenItemsSO, IKitchenItemParentManager kitchenItemParent)
         {

@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622001625f13818498896c2d7753b302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenItemsSO: {fileID: 11400000, guid: 07ed173de8e2d2542b58b90942239e6f, type: 2}
   counterTopPoint: {fileID: 4927450168456058677}
+  kitchenItemsSO: {fileID: 11400000, guid: f8b4fce1f1f50284c94a3f856be6b217, type: 2}
 --- !u!1001 &8395615548047317546
 PrefabInstance:
   m_ObjectHideFlags: 0

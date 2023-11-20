@@ -139,7 +139,28 @@ namespace CookDis
             else
             {   // counter has item
 
-                if (!player.HasKitchenItem())
+                if (player.HasKitchenItem())
+                { // player carrying item
+
+                    if (player.GetKitchenItem().TryToGetPlate(out PlateKitchenItemManager plateKitchenItem))
+                    { // player is holding a plate
+
+                        if (plateKitchenItem.TryToAddIngredient(GetKitchenItem().GetKitchenItemsSO()))
+                        {
+                            GetKitchenItem().DestroySelf();
+                            state = State.Idle;
+                            OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                            {
+                                state = state
+                            });
+                            OnProgressChanged?.Invoke(this, new IHasProgressManager.OnProgressChangedEventArgs
+                            {
+                                progressNormalized = 0f
+                            });
+                        }
+                    }
+                }
+                else
                 {   // player not carrying item
 
                     GetKitchenItem().SetKitchenItemParent(player);

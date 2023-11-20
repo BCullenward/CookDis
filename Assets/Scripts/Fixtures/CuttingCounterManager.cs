@@ -40,7 +40,18 @@ namespace CookDis
             else
             {   // counter has item
 
-                if (!player.HasKitchenItem())
+                if (player.HasKitchenItem())
+                { // player carrying item
+                    if (player.GetKitchenItem().TryToGetPlate(out PlateKitchenItemManager plateKitchenItem))
+                    { // player is holding a plate
+
+                        if (plateKitchenItem.TryToAddIngredient(GetKitchenItem().GetKitchenItemsSO()))
+                        {
+                            GetKitchenItem().DestroySelf();
+                        }
+                    }
+                }
+                else
                 {   // player not carrying item
 
                     GetKitchenItem().SetKitchenItemParent(player);
