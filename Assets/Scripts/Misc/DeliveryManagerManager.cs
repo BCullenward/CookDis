@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace CookDis
 {
-    public class DeliveryManager : MonoBehaviour
+    public class DeliveryManagerManager : MonoBehaviour
     {
-        public static DeliveryManager Instance {get; private set; }
+
+        public event EventHandler OnRecipeSpawned;
+        public event EventHandler OnRecipeCompleted;
+
+        public static DeliveryManagerManager Instance {get; private set; }
         [SerializeField] RecipeListSOManager recipeListSO;
         private List<RecipeSOManager> waitingRecipeSOList;
 
@@ -31,9 +36,10 @@ namespace CookDis
             {
                 spawnRecipeTimer = spawnRecipeTimerMax;
 
-                RecipeSOManager waitingRecipeSO = recipeListSO.recipeSOList[Random.Range(0, recipeListSO.recipeSOList.Count)];
-                Debug.Log(waitingRecipeSO.recipeName);
+                RecipeSOManager waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
                 waitingRecipeSOList.Add(waitingRecipeSO);
+
+                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -67,18 +73,22 @@ namespace CookDis
 
                     if (plateContentsMatchesRecipe)
                     { // Player delivered correct recipe
-                        Debug.Log("Correct");
                         waitingRecipeSOList.RemoveAt(i);
+
+                        OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+
                         return;
                     }
                 }
             }
 
             // No matches found - Player did not deliver correct recipe
-            Debug.Log("Wah wah no correct recipe");
+
         }
 
-
+        public List<RecipeSOManager> GetWaitingRecipeSOList()
+        {
+            return waitingRecipeSOList;
+        }
     }
-
 }

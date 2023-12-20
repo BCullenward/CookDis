@@ -13,7 +13,7 @@ namespace CookDis
                 if (player.GetKitchenItem().TryToGetPlate(out PlateKitchenItemManager plateKitchenItem))
                 {   // only accepts plates
 
-                    DeliveryManager.Instance.DeliverRecipe(plateKitchenItem);
+                    DeliveryManagerManager.Instance.DeliverRecipe(plateKitchenItem);
 
                     player.GetKitchenItem().DestroySelf();
                 }
