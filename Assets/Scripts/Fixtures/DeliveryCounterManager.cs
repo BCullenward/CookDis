@@ -6,6 +6,14 @@ namespace CookDis
 {
     public class DeliveryCounterManager : CounterManager
     {
+
+        public static DeliveryCounterManager Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         public override void Interact(PlayerManager player)
         {
             if (player.HasKitchenItem())

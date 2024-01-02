@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace CookDis
 {
     public class CounterManager : MonoBehaviour, IKitchenItemParentManager
     {
+        public static event EventHandler OnAnyItemPlacedHere;
 
         [SerializeField] private Transform counterTopPoint;
 
@@ -27,6 +29,11 @@ namespace CookDis
         public void SetKitchenItem(KitchenItemManager kitchenItem)
         {
             this.kitchenItem = kitchenItem;
+
+            if (kitchenItem != null)
+            {
+                OnAnyItemPlacedHere?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public KitchenItemManager GetKitchenItem()

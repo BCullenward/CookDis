@@ -58,6 +58,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.6f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Audio\StoveCounterSFXManager.cs" />
     <Compile Include="Assets\Scripts\Items\PlateKitchenItemManager.cs" />
     <Compile Include="Assets\Scripts\Animals\DeerManager.cs" />
     <Compile Include="Assets\Scripts\Animals\AnimalManager.cs" />
@@ -69,13 +70,14 @@
     <Compile Include="Assets\Scripts\Animals\ChickenManager.cs" />
     <Compile Include="Assets\Scripts\Items\KitchenItemManager.cs" />
     <Compile Include="Assets\Scripts\SOs\RecipeSOManager.cs" />
-    <Compile Include="Assets\TrashCounterManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\PlayerSFXManager.cs" />
     <Compile Include="Assets\Scripts\Items\LootSOManager.cs" />
     <Compile Include="Assets\Scripts\Items\IKitchenItemParentManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\PlateCounterManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Items\PlateCompleteVisualManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\SFXManager.cs" />
     <Compile Include="Assets\Scripts\UI\FloatingHarvestProgressBar.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressBarUIManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\SelectedCounterVisualManager.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Assets\Scripts\Items\AnimalItemManager.cs" />
     <Compile Include="Assets\Scripts\Items\LootBagManager.cs" />
     <Compile Include="Assets\Scripts\UI\IconsUIManager.cs" />
+    <Compile Include="Assets\Scripts\Fixtures\TrashCounterManager.cs" />
     <Compile Include="Assets\Scripts\UI\DeliveryManagerSingleUIManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\ContainerCounterManager.cs" />
     <Compile Include="Assets\Scripts\UI\DeliveryManagerUIManager.cs" />
@@ -105,8 +108,9 @@
     <Compile Include="Assets\Scripts\Animals\CowManager.cs" />
     <Compile Include="Assets\Scripts\SOs\CookingRecipeSOManager.cs" />
     <Compile Include="Assets\Scripts\Fixtures\CounterManager.cs" />
-    <Compile Include="Assets\Scripts\UI\AnimalProgressBarUIManager.cs" />
+    <Compile Include="Assets\Scripts\SOs\SFXSOManager.cs" />
     <Compile Include="Assets\Scripts\SOs\RecipeListSOManager.cs" />
+    <Compile Include="Assets\Scripts\UI\AnimalProgressBarUIManager.cs" />
     <Compile Include="Assets\Scripts\UI\IHasProgressManager.cs" />
     <Compile Include="Assets\Scripts\Items\IAnimalItemParentManager.cs" />
   </ItemGroup>

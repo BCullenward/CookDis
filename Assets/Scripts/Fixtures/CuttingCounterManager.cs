@@ -7,6 +7,8 @@ namespace CookDis
 {
     public class CuttingCounterManager : CounterManager, IHasProgressManager
     {
+        public static event EventHandler OnAnyCut;
+
         public event EventHandler<IHasProgressManager.OnProgressChangedEventArgs> OnProgressChanged;
         public event EventHandler OnCut;
 
@@ -74,6 +76,8 @@ namespace CookDis
                     cuttingProgress++;
 
                     OnCut?.Invoke(this, EventArgs.Empty);
+                    OnAnyCut?.Invoke(this, EventArgs.Empty);
+
                     CuttingRecipeSOManager cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenItem().GetKitchenItemsSO());
 
                     OnProgressChanged?.Invoke(this, new IHasProgressManager.OnProgressChangedEventArgs

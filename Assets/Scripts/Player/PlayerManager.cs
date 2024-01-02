@@ -10,6 +10,8 @@ namespace CookDis
         public static PlayerManager Instance { get; private set; }
 
         public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+        public event EventHandler OnItemPickup;
+
         public class OnSelectedCounterChangedEventArgs : EventArgs
         {
             public CounterManager selectedCounter;
@@ -244,6 +246,12 @@ namespace CookDis
             // TO_DO play grab animation
             // TO_DO play soundFX
             this.kitchenItem = kitchenItem;
+
+            if (kitchenItem != null)
+            {
+                OnItemPickup?.Invoke(this, EventArgs.Empty);
+            }
+
         }
 
         public KitchenItemManager GetKitchenItem()
