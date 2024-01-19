@@ -57,6 +57,11 @@ namespace CookDis
 
         private void PlayerInput_OnInteractAlternateAction(object sender, EventArgs e)
         {
+            if (!GameHandlerManager.Instance.IsGamePlaying())
+            {
+                return;
+            }
+
             if (selectedCounter != null)
             {
                 selectedCounter.InteractAlternate(this);
@@ -70,6 +75,11 @@ namespace CookDis
 
         private void PlayerInput_OnInteractAction(object sender, EventArgs e)
         {
+            if (!GameHandlerManager.Instance.IsGamePlaying())
+            {
+                return;
+            }
+
             if (selectedCounter != null)
             {
                 selectedCounter.Interact(this);
@@ -79,7 +89,6 @@ namespace CookDis
             {
                 selectedAnimal.Interact(this);
             }
-
         }
 
         private void Update()
